@@ -1,5 +1,5 @@
 import { MESSAGES, SETTINGS } from "../constants/index.js";
-import { bonusNumberValidator } from "../validators/index.js";
+import bonusNumberValidator from "../validators/bonusNumberValidator.js";
 
 describe("bonusNumberValidator 테스트", () => {
   test("올바른 보너스 번호면 에러가 발생하지 않는다.", () => {

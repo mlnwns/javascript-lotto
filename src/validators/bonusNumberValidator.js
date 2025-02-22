@@ -1,7 +1,7 @@
 import CustomError from "../CustomError.js";
 import { MESSAGES, SETTINGS } from "../constants/index.js";
 
-export const bonusNumberValidator = (bonusNumber, winningNumbers) => {
+const bonusNumberValidator = (bonusNumber, winningNumbers) => {
   validateSingleNumber(bonusNumber);
   validateRange(bonusNumber);
   validateNoDuplicate(bonusNumber, winningNumbers);

@@ -1,7 +1,7 @@
 import CustomError from "../CustomError.js";
 import { MESSAGES, SETTINGS } from "../constants/index.js";
 
-export const lottoNumberValidator = (inputValue) => {
+const lottoNumberValidator = (inputValue) => {
   validateNumberOnly(inputValue);
   validateLength(inputValue);
   validateDuplicate(inputValue);

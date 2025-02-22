@@ -1,5 +1,5 @@
 import { MESSAGES, SETTINGS } from "../constants/index.js";
-import { lottoNumberValidator } from "./lottoNumberValidator.js";
+import lottoNumberValidator from "./lottoNumberValidator.js";
 
 describe("lottoNumberValidator", () => {
   test("올바른 당첨번호 입력을 할 시 에러가 발생하지 않는다.", () => {

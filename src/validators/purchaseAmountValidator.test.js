@@ -1,5 +1,5 @@
 import { MESSAGES } from "../constants/index.js";
-import { purchaseAmountValidator } from "../validators/index.js";
+import purchaseAmountValidator from "../validators/purchaseAmountValidator.js";
 import { SETTINGS } from "../constants/index.js";
 
 describe("PurchaseAmount 테스트", () => {

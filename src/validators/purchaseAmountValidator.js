@@ -1,7 +1,7 @@
 import CustomError from "../CustomError.js";
 import { MESSAGES, SETTINGS } from "../constants/index.js";
 
-export const purchaseAmountValidator = (inputValue) => {
+const purchaseAmountValidator = (inputValue) => {
   validateInteger(inputValue);
   validateAboveMinRange(inputValue);
   validateUnit(inputValue);
