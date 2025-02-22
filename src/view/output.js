@@ -1,33 +1,32 @@
 import CustomError from "../CustomError.js";
-import { MESSAGES } from "../constants/index.js";
-import { SETTINGS } from "../constants/index.js";
+import { MESSAGES, SETTINGS } from "../constants/index.js";
 
-export default class Output {
-  static print(message) {
+const output = {
+  print(message) {
     console.log(message);
-  }
+  },
 
-  static error(errorMessage) {
+  error(errorMessage) {
     throw new CustomError(errorMessage);
-  }
+  },
 
-  static lottoResult() {
+  lottoResult() {
     this.print(MESSAGES.output.result);
     this.print(MESSAGES.output.divider);
-  }
+  },
 
-  static printLottoTickets(lottoTickets) {
+  printLottoTickets(lottoTickets) {
     this.print(`${lottoTickets.length}개를 구매했습니다.`);
     lottoTickets.forEach((ticket) => {
       this.print(`[${ticket.join(", ")}]`);
     });
-  }
+  },
 
-  static printRankResult(count, description) {
+  printRankResult(count, description) {
     this.print(`${description} - ${count}개`);
-  }
+  },
 
-  static printMatchResults(results) {
+  printMatchResults(results) {
     this.lottoResult();
 
     this.printRankResult(
@@ -62,5 +61,7 @@ export default class Output {
     );
 
     this.print(`총 수익률은 ${results.profitRate}%입니다.`);
-  }
-}
+  },
+};
+
+export default output;

@@ -8,7 +8,7 @@ import {
 } from "../validators/index.js";
 import { retryUntilValid } from "../utils/retryUntilValid.js";
 import LottoGenerator from "../domain/LottoGenerator.js";
-import Output from "../view/Output.js";
+import output from "../view/output.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
 
 class LottoController {
@@ -22,7 +22,7 @@ class LottoController {
       const purchaseAmount = await this.getPurchaseAmount();
       this.lottoTickets = LottoGenerator.generate(purchaseAmount);
 
-      Output.printLottoTickets(this.lottoTickets);
+      output.printLottoTickets(this.lottoTickets);
 
       this.winningNumber = await this.getWinningNumber();
       const bonusNumber = await this.getBonusNumber();
@@ -75,7 +75,7 @@ class LottoController {
     );
 
     const results = calculator.getResults();
-    Output.printMatchResults(results);
+    output.printMatchResults(results);
   }
 }
 
