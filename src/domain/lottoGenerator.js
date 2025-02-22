@@ -1,8 +1,8 @@
 import { SETTINGS } from "../constants/index.js";
 import { sortNumbersAscending } from "../utils/sortNumbersAscending.js";
 
-class LottoGenerator {
-  static generate(amount) {
+const lottoGenerator = {
+  generate(amount) {
     const ticketCount = Math.floor(amount / SETTINGS.priceUnit);
     const tickets = [];
 
@@ -11,9 +11,9 @@ class LottoGenerator {
     }
 
     return tickets;
-  }
+  },
 
-  static createLottoNumbers() {
+  createLottoNumbers() {
     const numbers = new Set();
 
     while (numbers.size < SETTINGS.numberCount) {
@@ -26,7 +26,7 @@ class LottoGenerator {
     }
 
     return sortNumbersAscending(Array.from(numbers));
-  }
-}
+  },
+};
 
-export default LottoGenerator;
+export default lottoGenerator;

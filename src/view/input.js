@@ -1,7 +1,9 @@
 import { readLineAsync } from "../utils/readLineAsync.js";
 
-export default class Input {
-  static getInput(message) {
+const input = {
+  getInput(message) {
     return readLineAsync(message);
-  }
-}
+  },
+};
+
+export default input;
