@@ -1,4 +1,4 @@
-import { MESSAGES } from "../constants/index.js";
+import { MESSAGES, SETTINGS } from "../constants/index.js";
 import { bonusNumberValidator } from "../validators/index.js";
 
 describe("bonusNumberValidator 테스트", () => {
@@ -12,14 +12,14 @@ describe("bonusNumberValidator 테스트", () => {
     );
   });
 
-  test("보너스 번호가 1보다 작거나 45보다 크면 에러를 띄운다.", () => {
-    expect(() => bonusNumberValidator(0, [1, 2, 3, 4, 5, 6])).toThrow(
-      MESSAGES.invalid.bonusNumberRange
-    );
-    expect(() => bonusNumberValidator(46, [1, 2, 3, 4, 5, 6])).toThrow(
-      MESSAGES.invalid.bonusNumberRange
-    );
-  });
+  test.each([[SETTINGS.numberRange.min - 1], [SETTINGS.numberRange.max + 1]])(
+    `보너스 번호가 ${SETTINGS.numberRange.min}보다 작거나 ${SETTINGS.numberRange.max}보다 크면 에러를 띄운다.`,
+    (bonusNumber) => {
+      expect(() =>
+        bonusNumberValidator(bonusNumber, [1, 2, 3, 4, 5, 6])
+      ).toThrow(MESSAGES.invalid.bonusNumberRange);
+    }
+  );
 
   test("보너스 번호가 당첨 번호와 중복되면 에러를 띄운다.", () => {
     expect(() => bonusNumberValidator(3, [1, 2, 3, 4, 5, 6])).toThrow(

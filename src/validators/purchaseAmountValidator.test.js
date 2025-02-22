@@ -1,9 +1,10 @@
 import { MESSAGES } from "../constants/index.js";
 import { purchaseAmountValidator } from "../validators/index.js";
+import { SETTINGS } from "../constants/index.js";
 
 describe("PurchaseAmount 테스트", () => {
-  test("올바른 구입 금액을 입력할 시 에러가 발생하지 않는다.", () => {
-    expect(() => purchaseAmountValidator(1000)).not.toThrow();
+  test(`올바른 구입 금액(${SETTINGS.priceUnit}원)를 입력할 시 에러가 발생하지 않는다.`, () => {
+    expect(() => purchaseAmountValidator(SETTINGS.priceUnit)).not.toThrow();
   });
 
   test("구입 금액이 숫자가 아니면 에러를 띄운다.", () => {
@@ -18,14 +19,14 @@ describe("PurchaseAmount 테스트", () => {
     );
   });
 
-  test("구입 금액이 1000원으로 나누어 떨어지지 않을 경우 에러를 띄운다.", () => {
-    expect(() => purchaseAmountValidator(2025)).toThrow(
+  test(`구입 금액이 ${SETTINGS.priceUnit}원으로 나누어 떨어지지 않을 경우 에러를 띄운다.`, () => {
+    expect(() => purchaseAmountValidator(SETTINGS.priceUnit + 1)).toThrow(
       MESSAGES.invalid.purchaseAmount
     );
   });
 
-  test("구입 금액이 1000원 미만이면 에러를 띄운다.", () => {
-    expect(() => purchaseAmountValidator(999)).toThrow(
+  test(`구입 금액이 ${SETTINGS.priceUnit}원 미만이면 에러를 띄운다.`, () => {
+    expect(() => purchaseAmountValidator(SETTINGS.priceUnit - 1)).toThrow(
       MESSAGES.invalid.minimumPurchase
     );
   });

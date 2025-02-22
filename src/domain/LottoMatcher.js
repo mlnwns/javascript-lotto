@@ -19,17 +19,16 @@ class LottoMatcher {
   calculateRank() {
     const matchCount = this.countMatches();
 
-    if (matchCount === SETTINGS.rewards.first.matchCount) return "first";
-    if (
-      matchCount === SETTINGS.rewards.second.matchCount &&
-      this.hasBonusMatch()
-    )
-      return "second";
-    if (matchCount === SETTINGS.rewards.third.matchCount) return "third";
-    if (matchCount === SETTINGS.rewards.fourth.matchCount) return "fourth";
-    if (matchCount === SETTINGS.rewards.fifth.matchCount) return "fifth";
+    const rank = Object.keys(SETTINGS.rewards).find((key) => {
+      const reward = SETTINGS.rewards[key];
+      return (
+        reward.matchCount === matchCount &&
+        (reward.bonusMatch === undefined ||
+          reward.bonusMatch === this.hasBonusMatch())
+      );
+    });
 
-    return "none";
+    return rank || "none";
   }
 }
 
