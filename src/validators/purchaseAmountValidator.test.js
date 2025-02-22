@@ -2,7 +2,7 @@ import { MESSAGES } from "../constants/index.js";
 import { purchaseAmountValidator } from "../validators/index.js";
 
 describe("PurchaseAmount 테스트", () => {
-  test("올바른 구입 금액이면 에러가 발생하지 않는다.", () => {
+  test("올바른 구입 금액을 입력할 시 에러가 발생하지 않는다.", () => {
     expect(() => purchaseAmountValidator(1000)).not.toThrow();
   });
 
@@ -24,7 +24,7 @@ describe("PurchaseAmount 테스트", () => {
     );
   });
 
-  test("구입 금액이 1000원 미만이면 에러를 던진다.", () => {
+  test("구입 금액이 1000원 미만이면 에러를 띄운다.", () => {
     expect(() => purchaseAmountValidator(999)).toThrow(
       MESSAGES.invalid.minimumPurchase
     );

@@ -2,7 +2,7 @@ import { MESSAGES } from "../constants/index.js";
 import { lottoNumberValidator } from "./lottoNumberValidator.js";
 
 describe("lottoNumberValidator", () => {
-  test("올바른 입력이면 에러가 발생하지 않는다.", () => {
+  test("올바른 당첨번호 입력을 할 시 에러가 발생하지 않는다.", () => {
     expect(() => lottoNumberValidator([1, 2, 3, 4, 5, 6])).not.toThrow();
   });
 
