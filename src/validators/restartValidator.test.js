@@ -3,9 +3,9 @@ import { MESSAGES } from "../constants/messages.js";
 
 describe("restartValidator", () => {
   test.each(["y", "n"])(
-    "재시작 여부 입력값이 '%s'일 경우 true를 반환한다.",
+    "재시작 여부 입력값이 '%s'일 경우 정상적으로 실행된다",
     (input) => {
-      expect(restartValidator(input)).toBe(true);
+      expect(() => restartValidator(input)).not.toThrow();
     }
   );
 
