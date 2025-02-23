@@ -18,17 +18,33 @@ class LottoController {
   }
 
   async play() {
-    do {
-      const purchaseAmount = await this.getPurchaseAmount();
-      this.lottoTickets = lottoGenerator.generate(purchaseAmount);
+    await this.runGame();
+    await this.handleRestart();
+  }
 
-      output.printLottoTickets(this.lottoTickets);
+  async runGame() {
+    const purchaseAmount = await this.getPurchaseAmount();
+    this.lottoTickets = lottoGenerator.generate(purchaseAmount);
 
-      this.winningNumber = await this.getWinningNumber();
-      const bonusNumber = await this.getBonusNumber();
+    output.printLottoTickets(this.lottoTickets);
 
-      this.calculateAndDisplayResults(bonusNumber);
-    } while (await this.getRestartChoice());
+    this.winningNumber = await this.getWinningNumber();
+    const bonusNumber = await this.getBonusNumber();
+
+    this.calculateAndDisplayResults(bonusNumber);
+  }
+
+  async handleRestart() {
+    const shouldRestart = await this.getRestartChoice();
+    if (shouldRestart) {
+      this.resetGame();
+      await this.play();
+    }
+  }
+
+  resetGame() {
+    this.lottoTickets = [];
+    this.winningNumber = [];
   }
 
   async getRestartChoice() {
