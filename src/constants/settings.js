@@ -1,5 +1,6 @@
 export const SETTINGS = Object.freeze({
   priceUnit: 1_000,
+  maxPurchaseCount: 100,
   numberCount: 6,
   numberRange: { min: 1, max: 45 },
   rewards: {

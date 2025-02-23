@@ -22,6 +22,7 @@ export const MESSAGES = Object.freeze({
     bonusNumberRange: `보너스 번호는 ${SETTINGS.numberRange.min}에서 ${SETTINGS.numberRange.max} 사이의 숫자여야 합니다.`,
     minimumPurchase: `최소 구입 금액은 ${SETTINGS.priceUnit.toLocaleString()}원입니다.`,
     purchaseAmount: `구입 금액은 ${SETTINGS.priceUnit.toLocaleString()}원 단위여야 합니다.`,
+    maxmumPurchase: `한 번에 최대 ${SETTINGS.maxPurchaseCount}장까지 구입할 수 있습니다.`,
     restartInput: "잘못된 입력입니다. 다시 입력해 주세요.",
   },
 });

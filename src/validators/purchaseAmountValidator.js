@@ -5,6 +5,7 @@ const purchaseAmountValidator = (inputValue) => {
   validateInteger(inputValue);
   validateAboveMinRange(inputValue);
   validateUnit(inputValue);
+  validatePurchaseLimit(inputValue);
 };
 
 const validateInteger = (inputValue) => {
@@ -26,6 +27,13 @@ const validateAboveMinRange = (inputValue) => {
 const validateUnit = (inputValue) => {
   if (inputValue % SETTINGS.priceUnit !== 0) {
     throw new CustomError(MESSAGES.invalid.purchaseAmount);
+  }
+};
+
+const validatePurchaseLimit = (inputValue) => {
+  const maxAmount = SETTINGS.priceUnit * SETTINGS.maxPurchaseCount;
+  if (inputValue > maxAmount) {
+    throw new CustomError(MESSAGES.invalid.maxmumPurchase);
   }
 };
 
