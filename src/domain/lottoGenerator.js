@@ -1,9 +1,11 @@
 import { SETTINGS } from "../constants/index.js";
-import { sortNumbersAscending } from "../utils/sortNumbersAscending.js";
+import { sortNumbersAscending } from "../utils/array/sort.js";
+import { getRandomNumber } from "../utils/numbers/getRandomNumber.js";
+import { calculateTicketCount } from "../utils/numbers/calculateTicketCount.js";
 
 const lottoGenerator = {
   generate(amount) {
-    const ticketCount = Math.floor(amount / SETTINGS.priceUnit);
+    const ticketCount = calculateTicketCount(amount, SETTINGS.priceUnit);
     const tickets = [];
 
     for (let i = 0; i < ticketCount; i++) {
@@ -17,12 +19,9 @@ const lottoGenerator = {
     const numbers = new Set();
 
     while (numbers.size < SETTINGS.numberCount) {
-      const randomNumber =
-        Math.floor(
-          Math.random() *
-            (SETTINGS.numberRange.max - SETTINGS.numberRange.min + 1)
-        ) + SETTINGS.numberRange.min;
-      numbers.add(randomNumber);
+      numbers.add(
+        getRandomNumber(SETTINGS.numberRange.min, SETTINGS.numberRange.max)
+      );
     }
 
     return sortNumbersAscending(Array.from(numbers));

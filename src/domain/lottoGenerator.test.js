@@ -1,5 +1,5 @@
 import lottoGenerator from "../domain/lottoGenerator.js";
-import { sortNumbersAscending } from "../utils/sortNumbersAscending.js";
+import { sortNumbersAscending } from "../utils/array/sort.js";
 import { SETTINGS } from "../constants/index.js";
 
 describe("lottoGenerator 테스트", () => {

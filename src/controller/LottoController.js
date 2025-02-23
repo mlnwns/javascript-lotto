@@ -6,7 +6,7 @@ import {
   bonusNumberValidator,
   restartValidator,
 } from "../validators/index.js";
-import { retryUntilValid } from "../utils/retryUntilValid.js";
+import { retryUntilValid } from "../utils/validation/retryUntilValid.js";
 import lottoGenerator from "../domain/lottoGenerator.js";
 import output from "../view/output.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";

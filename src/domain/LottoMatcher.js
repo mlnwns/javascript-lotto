@@ -1,4 +1,5 @@
 import { SETTINGS } from "../constants/index.js";
+import { containsElement, countArrayMatches } from "../utils/array/match.js";
 
 class LottoMatcher {
   constructor(numbers, winningNumbers, bonusNumber) {
@@ -8,12 +9,11 @@ class LottoMatcher {
   }
 
   countMatches() {
-    return this.numbers.filter((number) => this.winningNumbers.includes(number))
-      .length;
+    return countArrayMatches(this.numbers, this.winningNumbers);
   }
 
   hasBonusMatch() {
-    return this.numbers.includes(this.bonusNumber);
+    return containsElement(this.numbers, this.bonusNumber);
   }
 
   calculateRank() {

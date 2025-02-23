@@ -1,4 +1,4 @@
-import output from "../view/output.js";
+import output from "../../view/output.js";
 
 export const retryUntilValid = async (getInputFn, parseFn, validator) => {
   while (true) {
