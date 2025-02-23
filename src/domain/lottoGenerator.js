@@ -6,13 +6,7 @@ import { calculateTicketCount } from "../utils/numbers/calculateTicketCount.js";
 const lottoGenerator = {
   generate(amount) {
     const ticketCount = calculateTicketCount(amount, SETTINGS.priceUnit);
-    const tickets = [];
-
-    for (let i = 0; i < ticketCount; i++) {
-      tickets.push(this.createLottoNumbers());
-    }
-
-    return tickets;
+    return Array.from({ length: ticketCount }, () => this.createLottoNumbers());
   },
 
   createLottoNumbers() {
