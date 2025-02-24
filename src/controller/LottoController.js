@@ -87,9 +87,9 @@ class LottoController {
     const calculator = new ProfitCalculator();
 
     const results = calculator.getResults(
-      this.lottoTickets,
       this.winningNumber,
-      bonusNumber
+      bonusNumber,
+      this.lottoTickets
     );
     output.printMatchResults(results);
   }
