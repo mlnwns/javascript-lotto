@@ -1,4 +1,3 @@
-import input from "../view/input.js";
 import { MESSAGES } from "../constants/index.js";
 import {
   purchaseAmountValidator,
@@ -6,6 +5,7 @@ import {
   bonusNumberValidator,
   restartValidator,
 } from "../validators/index.js";
+import { readLineAsync } from "../utils/input/readLineAsync.js";
 import { retryUntilValid } from "../utils/validation/retryUntilValid.js";
 import lottoGenerator from "../domain/lottoGenerator.js";
 import output from "../view/output.js";
@@ -49,7 +49,7 @@ class LottoController {
 
   async getRestartChoice() {
     const restartInput = await retryUntilValid(
-      () => input.getInput("\n" + MESSAGES.input.askRestart),
+      () => readLineAsync("\n" + MESSAGES.input.askRestart),
       (input) => input.trim().toLowerCase(),
       restartValidator
     );
@@ -58,7 +58,7 @@ class LottoController {
 
   async getPurchaseAmount() {
     const purchaseAmount = await retryUntilValid(
-      () => input.getInput(MESSAGES.input.purchaseAmount),
+      () => readLineAsync(MESSAGES.input.purchaseAmount),
       (input) => Number(input),
       purchaseAmountValidator
     );
@@ -67,7 +67,7 @@ class LottoController {
 
   async getWinningNumber() {
     const winningNumber = await retryUntilValid(
-      () => input.getInput("\n" + MESSAGES.input.winningNumber),
+      () => readLineAsync("\n" + MESSAGES.input.winningNumber),
       (input) => input.split(",").map(Number),
       lottoNumberValidator
     );
@@ -76,7 +76,7 @@ class LottoController {
 
   async getBonusNumber() {
     const bonusNumber = await retryUntilValid(
-      () => input.getInput("\n" + MESSAGES.input.bonusNumber),
+      () => readLineAsync("\n" + MESSAGES.input.bonusNumber),
       (input) => Number(input),
       (bonusNumber) => bonusNumberValidator(bonusNumber, this.winningNumber)
     );
