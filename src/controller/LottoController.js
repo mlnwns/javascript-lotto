@@ -84,13 +84,13 @@ class LottoController {
   }
 
   calculateAndDisplayResults(bonusNumber) {
-    const calculator = new ProfitCalculator(
+    const calculator = new ProfitCalculator();
+
+    const results = calculator.getResults(
       this.lottoTickets,
       this.winningNumber,
       bonusNumber
     );
-
-    const results = calculator.getResults();
     output.printMatchResults(results);
   }
 }

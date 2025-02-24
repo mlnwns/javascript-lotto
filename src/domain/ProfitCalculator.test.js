@@ -11,13 +11,9 @@ describe("ProfitCalculator 테스트", () => {
     ];
     const bonusNumber = 8;
 
-    const profit = new ProfitCalculator(
-      lottoTickets,
-      winningNumbers,
-      bonusNumber
-    );
+    const profit = new ProfitCalculator();
 
-    profit.getResults();
-    expect(profit.calculateProfitRate()).toBe("1000000.0");
+    const result = profit.getResults(winningNumbers, bonusNumber, lottoTickets);
+    expect(result.profitRate).toBe("1000000.0");
   });
 });

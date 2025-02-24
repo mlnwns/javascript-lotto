@@ -2,10 +2,7 @@ import LottoMatcher from "./LottoMatcher.js";
 import { SETTINGS } from "../constants/index.js";
 
 class ProfitCalculator {
-  constructor(lottoTickets, winningNumbers, bonusNumber) {
-    this.lottoTickets = lottoTickets;
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+  constructor() {
     this.rankCounts = this.initializeRankCounts();
   }
 
@@ -20,14 +17,14 @@ class ProfitCalculator {
     };
   }
 
-  calculateResults() {
-    this.lottoTickets.forEach((ticket) => {
-      const matchResult = new LottoMatcher(
+  calculateResults(winningNumbers, bonusNumber, lottoTickets) {
+    lottoTickets.forEach((ticket) => {
+      const matchResult = new LottoMatcher();
+      const rank = matchResult.calculateRank(
         ticket,
-        this.winningNumbers,
-        this.bonusNumber
+        winningNumbers,
+        bonusNumber
       );
-      const rank = matchResult.calculateRank();
       this.rankCounts[rank]++;
     });
   }
@@ -39,19 +36,19 @@ class ProfitCalculator {
     }, 0);
   }
 
-  calculateProfitRate() {
-    const totalPurchaseAmount = this.lottoTickets.length * SETTINGS.priceUnit;
+  calculateProfitRate(lottoTickets) {
+    const totalPurchaseAmount = lottoTickets.length * SETTINGS.priceUnit;
     const totalPrize = this.calculateTotalPrize();
     const profitRate = (totalPrize / totalPurchaseAmount) * 100;
     return profitRate.toFixed(1);
   }
 
-  getResults() {
-    this.calculateResults();
+  getResults(winningNumbers, bonusNumber, lottoTickets) {
+    this.calculateResults(winningNumbers, bonusNumber, lottoTickets);
     return {
       rankCounts: this.rankCounts,
       totalPrize: this.calculateTotalPrize(),
-      profitRate: this.calculateProfitRate(),
+      profitRate: this.calculateProfitRate(lottoTickets),
     };
   }
 }

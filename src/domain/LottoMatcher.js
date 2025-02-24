@@ -2,29 +2,23 @@ import { SETTINGS } from "../constants/index.js";
 import { containsElement, countArrayMatches } from "../utils/array/match.js";
 
 class LottoMatcher {
-  constructor(numbers, winningNumbers, bonusNumber) {
-    this.numbers = numbers;
-    this.winningNumbers = winningNumbers;
-    this.bonusNumber = bonusNumber;
+  countMatches(ticket, winningNumbers) {
+    return countArrayMatches(ticket, winningNumbers);
   }
 
-  countMatches() {
-    return countArrayMatches(this.numbers, this.winningNumbers);
+  hasBonusMatch(ticket, bonusNumber) {
+    return containsElement(ticket, bonusNumber);
   }
 
-  hasBonusMatch() {
-    return containsElement(this.numbers, this.bonusNumber);
-  }
-
-  calculateRank() {
-    const matchCount = this.countMatches();
+  calculateRank(ticket, winningNumbers, bonusNumber) {
+    const matchCount = this.countMatches(ticket, winningNumbers);
 
     const rank = Object.keys(SETTINGS.rewards).find((key) => {
       const reward = SETTINGS.rewards[key];
       return (
         reward.matchCount === matchCount &&
         (reward.bonusMatch === undefined ||
-          reward.bonusMatch === this.hasBonusMatch())
+          reward.bonusMatch === this.hasBonusMatch(ticket, bonusNumber))
       );
     });
 
