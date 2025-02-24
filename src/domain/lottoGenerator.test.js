@@ -8,8 +8,9 @@ describe("lottoGenerator 테스트", () => {
   }원이면 8개의 로또를 생성해야 한다`, () => {
     const amount = 8 * SETTINGS.priceUnit;
     const tickets = lottoGenerator.generate(amount);
+    const expectedQuantity = amount / SETTINGS.priceUnit;
 
-    expect(tickets.length).toBe(amount / SETTINGS.priceUnit);
+    expect(tickets.length).toBe(expectedQuantity);
   });
 
   test(`각 로또 번호는 ${SETTINGS.numberCount}개여야 한다`, () => {
