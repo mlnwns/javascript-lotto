@@ -108,17 +108,6 @@ class LottoController {
     return bonusNumber;
   }
 
-  calculateAndDisplayResults(bonusNumber) {
-    const calculator = new ProfitCalculator();
-
-    const results = calculator.getResults(
-      this.winningNumber,
-      bonusNumber,
-      this.lottoTickets
-    );
-    output.printMatchResults(results);
-  }
-
   calculateMatchResults() {
     const rankCounts = {
       first: 0,
