@@ -1,5 +1,6 @@
 import CustomError from "../CustomError.js";
 import { MESSAGES, SETTINGS } from "../constants/index.js";
+import { isWithinRange } from "../utils/numbers/isWithinRange.js";
 
 const lottoNumberValidator = (inputValue) => {
   validateNumberOnly(inputValue);
@@ -33,7 +34,11 @@ const validateDuplicate = (numbers) => {
 const validateRange = (numbers) => {
   if (
     !numbers.every((num) => {
-      return num >= SETTINGS.numberRange.min && num <= SETTINGS.numberRange.max;
+      return isWithinRange(
+        num,
+        SETTINGS.numberRange.min,
+        SETTINGS.numberRange.max
+      );
     })
   ) {
     throw new CustomError(MESSAGES.invalid.lottoNumberRange);

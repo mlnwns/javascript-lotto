@@ -1,5 +1,6 @@
 import CustomError from "../CustomError.js";
 import { MESSAGES, SETTINGS } from "../constants/index.js";
+import { isWithinRange } from "../utils/numbers/isWithinRange.js";
 
 const bonusNumberValidator = (bonusNumber, winningNumbers) => {
   validateSingleNumber(bonusNumber);
@@ -19,8 +20,11 @@ const validateSingleNumber = (bonusNumber) => {
 
 const validateRange = (bonusNumber) => {
   if (
-    bonusNumber < SETTINGS.numberRange.min ||
-    bonusNumber > SETTINGS.numberRange.max
+    !isWithinRange(
+      bonusNumber,
+      SETTINGS.numberRange.min,
+      SETTINGS.numberRange.max
+    )
   ) {
     throw new CustomError(MESSAGES.invalid.bonusNumberRange);
   }
