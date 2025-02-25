@@ -1,4 +1,4 @@
 export const containsElement = (array, element) => array.includes(element);
 
-export const countArrayMatches = (sourceArray, targetArray) =>
-  sourceArray.filter((element) => targetArray.includes(element)).length;
+export const getIntersectionCount = (array1, array2) =>
+  array1.filter((element) => array2.includes(element)).length;

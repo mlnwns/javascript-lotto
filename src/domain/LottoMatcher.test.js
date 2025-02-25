@@ -1,14 +1,12 @@
 import LottoMatcher from "./LottoMatcher.js";
+import { getIntersectionCount } from "../utils/array/match.js";
 
 describe("LottoMatcher 테스트", () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
   const bonusNumber = 7;
 
   test("구입한 로또 번호와 당첨 번호를 비교해 일치 개수를 계산한다", () => {
-    const matchResult = new LottoMatcher();
-    expect(
-      matchResult.countMatches([1, 2, 3, 10, 20, 30], winningNumbers)
-    ).toBe(3);
+    expect(getIntersectionCount([1, 2, 3, 10, 20, 30], winningNumbers)).toBe(3);
   });
 
   test("입력한 보너스 번호와 지정된 보너스 번호가 일치하는지 확인한다.", () => {
