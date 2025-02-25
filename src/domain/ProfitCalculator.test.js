@@ -9,8 +9,8 @@ describe("ProfitCalculator 테스트", () => {
 
     const profit = new ProfitCalculator();
 
-    const ticketCount = 3;
-    const result = profit.calculateProfitStats(rankCounts, ticketCount);
+    const purchaseAmount = 3000;
+    const result = profit.getProfitStats(rankCounts, purchaseAmount);
 
     expect(result.profitRate).toBe("1000000.0");
   });

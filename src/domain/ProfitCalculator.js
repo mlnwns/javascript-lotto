@@ -8,15 +8,14 @@ class ProfitCalculator {
     }, 0);
   }
 
-  calculateProfitRate(totalPrize, ticketCount) {
-    const totalPurchaseAmount = ticketCount * SETTINGS.priceUnit;
-    const profitRate = (totalPrize / totalPurchaseAmount) * 100;
+  calculateProfitRate(totalPrize, purchaseAmount) {
+    const profitRate = (totalPrize / purchaseAmount) * 100;
     return profitRate.toFixed(1);
   }
 
-  calculateProfitStats(rankCounts, ticketCount) {
+  getProfitStats(rankCounts, purchaseAmount) {
     const totalPrize = this.calculateTotalPrize(rankCounts);
-    const profitRate = this.calculateProfitRate(totalPrize, ticketCount);
+    const profitRate = this.calculateProfitRate(totalPrize, purchaseAmount);
 
     return {
       totalPrize,

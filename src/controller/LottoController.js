@@ -35,7 +35,7 @@ class LottoController {
 
     const matchResults = this.calculateMatchResults();
 
-    this.displayResults(matchResults);
+    this.displayResults(matchResults, purchaseAmount);
   }
 
   async handleRestart() {
@@ -122,12 +122,12 @@ class LottoController {
     return { ticketResults, rankCounts };
   }
 
-  displayResults(matchResults) {
+  displayResults(matchResults, purchaseAmount) {
     const { rankCounts } = matchResults;
 
-    const profitStats = new ProfitCalculator().calculateProfitStats(
+    const profitStats = new ProfitCalculator().getProfitStats(
       rankCounts,
-      this.lottoTickets.length
+      purchaseAmount
     );
 
     const results = {
