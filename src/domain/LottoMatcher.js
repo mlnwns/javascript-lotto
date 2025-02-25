@@ -1,9 +1,9 @@
 import { SETTINGS } from "../constants/index.js";
-import { containsElement, getIntersectionCount } from "../utils/array/match.js";
+import { getIntersectionCount } from "../utils/array/match.js";
 
 class LottoMatcher {
   hasBonusMatch(ticket, bonusNumber) {
-    return containsElement(ticket, bonusNumber);
+    return ticket.includes(bonusNumber);
   }
 
   calculateRank(ticket, winningNumbers, bonusNumber) {
