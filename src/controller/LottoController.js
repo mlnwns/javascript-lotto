@@ -1,4 +1,4 @@
-import { MESSAGES } from "../constants/index.js";
+import { MESSAGES, SETTINGS } from "../constants/index.js";
 import {
   purchaseAmountValidator,
   lottoNumberValidator,
@@ -53,7 +53,7 @@ class LottoController {
       (input) => input.trim().toLowerCase(),
       restartValidator
     );
-    return restartInput === "y";
+    return restartInput === SETTINGS.restartCommand;
   }
 
   async getPurchaseAmount() {

@@ -10,4 +10,6 @@ export const SETTINGS = Object.freeze({
     fourth: { matchCount: 4, amount: 50_000 },
     fifth: { matchCount: 3, amount: 5_000 },
   },
+  restartCommand: "y",
+  exitCommand: "n",
 });
