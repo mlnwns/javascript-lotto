@@ -54,37 +54,57 @@ class LottoController {
 
   async getRestartChoice() {
     const restartInput = await retryUntilValid(
-      () => readLineAsync("\n" + MESSAGES.input.askRestart),
-      (input) => input.trim().toLowerCase(),
-      restartValidator
+      async () => {
+        const input = await readLineAsync("\n" + MESSAGES.input.askRestart);
+        const parsedInput = input.trim().toLowerCase();
+        restartValidator(parsedInput);
+        return parsedInput;
+      },
+      (message) => output.print(message)
     );
+
     return restartInput === SETTINGS.restartCommand;
   }
 
   async getPurchaseAmount() {
     const purchaseAmount = await retryUntilValid(
-      () => readLineAsync(MESSAGES.input.purchaseAmount),
-      (input) => Number(input),
-      purchaseAmountValidator
+      async () => {
+        const input = await readLineAsync(MESSAGES.input.purchaseAmount);
+        const parsedInput = Number(input);
+        purchaseAmountValidator(parsedInput);
+        return parsedInput;
+      },
+      (message) => output.print(message)
     );
+
     return purchaseAmount;
   }
 
   async getWinningNumber() {
     const winningNumber = await retryUntilValid(
-      () => readLineAsync("\n" + MESSAGES.input.winningNumber),
-      (input) => input.split(",").map(Number),
-      lottoNumberValidator
+      async () => {
+        const input = await readLineAsync("\n" + MESSAGES.input.winningNumber);
+        const parsedInput = input.split(",").map(Number);
+        lottoNumberValidator(parsedInput);
+        return parsedInput;
+      },
+      (message) => output.print(message)
     );
+
     return winningNumber;
   }
 
   async getBonusNumber() {
     const bonusNumber = await retryUntilValid(
-      () => readLineAsync("\n" + MESSAGES.input.bonusNumber),
-      (input) => Number(input),
-      (bonusNumber) => bonusNumberValidator(bonusNumber, this.winningNumber)
+      async () => {
+        const input = await readLineAsync("\n" + MESSAGES.input.bonusNumber);
+        const parsedInput = Number(input);
+        bonusNumberValidator(parsedInput, this.winningNumber);
+        return parsedInput;
+      },
+      (message) => output.print(message)
     );
+
     return bonusNumber;
   }
 

@@ -1,14 +1,9 @@
-import output from "../../view/output.js";
-
-export const retryUntilValid = async (getInputFn, parseFn, validator) => {
+export const retryUntilValid = async (func, onError) => {
   while (true) {
     try {
-      const userInput = await getInputFn();
-      const result = parseFn(userInput);
-      validator(result);
-      return result;
+      return func();
     } catch (error) {
-      output.print(error.message);
+      onError(error.message);
     }
   }
 };
