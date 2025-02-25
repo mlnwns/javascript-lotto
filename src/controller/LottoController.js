@@ -10,11 +10,13 @@ import { retryUntilValid } from "../utils/validation/retryUntilValid.js";
 import lottoGenerator from "../domain/lottoGenerator.js";
 import output from "../view/output.js";
 import ProfitCalculator from "../domain/ProfitCalculator.js";
+import LottoMatcher from "../domain/LottoMatcher.js";
 
 class LottoController {
   constructor() {
     this.lottoTickets = [];
     this.winningNumber = [];
+    this.bonusNumber = [];
   }
 
   async play() {
@@ -29,9 +31,11 @@ class LottoController {
     output.printLottoTickets(this.lottoTickets);
 
     this.winningNumber = await this.getWinningNumber();
-    const bonusNumber = await this.getBonusNumber();
+    this.bonusNumber = await this.getBonusNumber();
 
-    this.calculateAndDisplayResults(bonusNumber);
+    const matchResults = this.calculateMatchResults();
+
+    this.displayResults(matchResults);
   }
 
   async handleRestart() {
@@ -45,6 +49,7 @@ class LottoController {
   resetGame() {
     this.lottoTickets = [];
     this.winningNumber = [];
+    this.bonusNumber = [];
   }
 
   async getRestartChoice() {
@@ -91,6 +96,46 @@ class LottoController {
       bonusNumber,
       this.lottoTickets
     );
+    output.printMatchResults(results);
+  }
+
+  calculateMatchResults() {
+    const rankCounts = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+      none: 0,
+    };
+
+    const ticketResults = this.lottoTickets.map((ticket) => {
+      const rank = new LottoMatcher().calculateRank(
+        ticket,
+        this.winningNumber,
+        this.bonusNumber
+      );
+      rankCounts[rank]++;
+      return { ticket, rank };
+    });
+
+    return { ticketResults, rankCounts };
+  }
+
+  displayResults(matchResults) {
+    const { rankCounts } = matchResults;
+
+    const profitStats = new ProfitCalculator().calculateProfitStats(
+      rankCounts,
+      this.lottoTickets.length
+    );
+
+    const results = {
+      rankCounts,
+      totalPrize: profitStats.totalPrize,
+      profitRate: profitStats.profitRate,
+    };
+
     output.printMatchResults(results);
   }
 }
