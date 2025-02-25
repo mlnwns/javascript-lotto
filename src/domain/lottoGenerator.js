@@ -1,12 +1,15 @@
 import { SETTINGS } from "../constants/index.js";
 import { sortNumbersAscending } from "../utils/array/sort.js";
 import { getRandomNumber } from "../utils/numbers/getRandomNumber.js";
-import { calculateTicketCount } from "../utils/numbers/calculateTicketCount.js";
 
 const lottoGenerator = {
   generate(amount) {
-    const ticketCount = calculateTicketCount(amount, SETTINGS.priceUnit);
+    const ticketCount = this.calculateTicketCount(amount, SETTINGS.priceUnit);
     return Array.from({ length: ticketCount }, () => this.createLottoNumbers());
+  },
+
+  calculateTicketCount(amount, priceUnit) {
+    return Math.floor(amount / priceUnit);
   },
 
   createLottoNumbers() {
