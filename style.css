@@ -82,6 +82,22 @@ button {
   width: 3.5rem;
 }
 
+.lotto-ticket-item {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.lotto-ticket-item > i {
+  font-size: 1.5rem;
+}
+
+.lotto-ticket-item > span {
+  margin-left: 0.5rem;
+  font-size: 0.9375rem;
+  align-items: center;
+}
+
 footer {
   background-color: var(--greyscale-2);
   height: 5rem;
