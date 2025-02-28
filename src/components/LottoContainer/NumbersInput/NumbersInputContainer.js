@@ -4,6 +4,7 @@ import { ResultButton } from "./ResultButton.js";
 import { LottoResultModal } from "../../LottoResultModal/LottoResultModal.js";
 import { createElement } from "../../../utils/dom/createElement.js";
 import LottoController from "../../../controller/LottoController.js";
+import ProfitCalculator from "../../../domain/ProfitCalculator.js";
 import bonusNumberValidator from "../../../validators/bonusNumberValidator.js";
 import lottoNumberValidator from "../../../validators/lottoNumberValidator.js";
 
@@ -45,12 +46,22 @@ export const NumbersInputContainer = (purchaseAmount, lottos) => {
         ".bonus-number-input"
       );
       const bonusNumber = Number(bonusNumberInput.value.trim());
+
       lottoNumberValidator(winningNumbers);
       bonusNumberValidator(bonusNumber, winningNumbers);
+
       const lottoController = new LottoController();
       lottoController.setContext(lottos, winningNumbers, bonusNumber);
+
       const { rankCounts } = lottoController.calculateMatchResults();
-      LottoResultModal(rankCounts);
+
+      const profitCalculator = new ProfitCalculator();
+      const { profitRate } = profitCalculator.getProfitStats(
+        rankCounts,
+        purchaseAmount
+      );
+
+      LottoResultModal(rankCounts, profitRate);
     } catch (error) {
       alert(error.message);
     }

@@ -1,8 +1,9 @@
 import { createElement } from "../../utils/dom/createElement.js";
 import { Header } from "./Header/Header.js";
 import { ResultList } from "./Body/ResultLits.js";
+import { Footer } from "./Footer/Footer.js";
 
-export const LottoResultModal = (rankCounts) => {
+export const LottoResultModal = (rankCounts, profitRate) => {
   const lottoResultModal = createElement("div", {
     className: "lotto-result-modal",
   });
@@ -11,7 +12,7 @@ export const LottoResultModal = (rankCounts) => {
     className: "modal-content",
   });
 
-  modalContent.append(Header(), ResultList(rankCounts));
+  modalContent.append(Header(), ResultList(rankCounts), Footer(profitRate));
 
   lottoResultModal.appendChild(modalContent);
 
