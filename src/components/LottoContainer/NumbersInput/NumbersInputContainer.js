@@ -1,6 +1,7 @@
 import { InputGuideText } from "./InputGuideText.js";
 import { InputContainer } from "./InputContainer.js";
 import { ResultButton } from "./ResultButton.js";
+import { LottoResultModal } from "../../LottoResultModal/LottoResultModal.js";
 import { createElement } from "../../../utils/dom/createElement.js";
 import LottoController from "../../../controller/LottoController.js";
 import bonusNumberValidator from "../../../validators/bonusNumberValidator.js";
@@ -49,6 +50,7 @@ export const NumbersInputContainer = (purchaseAmount, lottos) => {
       const lottoController = new LottoController();
       lottoController.setContext(lottos, winningNumbers, bonusNumber);
       const { rankCounts } = lottoController.calculateMatchResults();
+      LottoResultModal(rankCounts);
     } catch (error) {
       alert(error.message);
     }
