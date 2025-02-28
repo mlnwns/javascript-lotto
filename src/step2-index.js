@@ -4,7 +4,8 @@
  */
 import purchaseAmountValidator from "./validators/purchaseAmountValidator.js";
 import lottoGenerator from "./domain/lottoGenerator.js";
-import { LottoTicketContainer } from "./components/LottoTicket/LottoTicketContainer.js";
+import { LottoTicketContainer } from "./components/LottoContainer/LottoTicket/LottoTicketContainer.js";
+import { NumbersInputContainer } from "./components/LottoContainer/NumbersInput/NumbersInputContainer.js";
 
 const lottoPurchaseForm = document.querySelector(".lotto-purchase-form");
 const purchaseAmountInput = document.querySelector(".purchase-amount-input");
@@ -14,11 +15,14 @@ lottoPurchaseForm.addEventListener("submit", (event) => {
   try {
     const purchaseAmount = Number(purchaseAmountInput.value);
     purchaseAmountValidator(purchaseAmount);
+
     const lottos = lottoGenerator.generate(purchaseAmount);
-    console.log(lottos);
 
     const lottoTicketContainer = document.querySelector(".lotto-container");
-    lottoTicketContainer.append(LottoTicketContainer(lottos));
+    lottoTicketContainer.append(
+      LottoTicketContainer(lottos),
+      NumbersInputContainer()
+    );
   } catch (error) {
     alert(error.message);
   }
