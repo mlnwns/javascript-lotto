@@ -1,4 +1,4 @@
-import { createElement } from "../../utils/dom/createElement.js";
+import { createElement } from "../../../utils/dom/createElement.js";
 import { LottoTicketList } from "./LottoTicketList.js";
 import { LottoCountText } from "./LottoCountText.js";
 
@@ -7,8 +7,10 @@ export const LottoTicketContainer = (lottoNumbersData) => {
     className: "lotto-ticket-container",
   });
 
-  lottoTicketContainer.append(LottoCountText(lottoNumbersData.length));
-  lottoTicketContainer.append(LottoTicketList(lottoNumbersData));
+  lottoTicketContainer.append(
+    LottoCountText(lottoNumbersData.length),
+    LottoTicketList(lottoNumbersData)
+  );
 
   return lottoTicketContainer;
 };

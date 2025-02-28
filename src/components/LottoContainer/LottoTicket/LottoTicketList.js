@@ -1,4 +1,4 @@
-import { createElement } from "../../utils/dom/createElement.js";
+import { createElement } from "../../../utils/dom/createElement.js";
 import { LottoTicketItem } from "./LottoTicketItem.js";
 
 export const LottoTicketList = (lottoNumbersData) => {

@@ -1,4 +1,4 @@
-import { createElement } from "../../utils/dom/createElement.js";
+import { createElement } from "../../../utils/dom/createElement.js";
 
 export const LottoCountText = (lottoCount) => {
   return createElement("span", {
