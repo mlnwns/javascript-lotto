@@ -2,8 +2,11 @@ import { InputGuideText } from "./InputGuideText.js";
 import { InputContainer } from "./InputContainer.js";
 import { ResultButton } from "./ResultButton.js";
 import { createElement } from "../../../utils/dom/createElement.js";
+import LottoController from "../../../controller/LottoController.js";
+import bonusNumberValidator from "../../../validators/bonusNumberValidator.js";
+import lottoNumberValidator from "../../../validators/lottoNumberValidator.js";
 
-export const NumbersInputContainer = () => {
+export const NumbersInputContainer = (purchaseAmount, lottos) => {
   const numbersInputContainer = createElement("form", {
     className: "numbers-input-container",
   });
@@ -28,6 +31,27 @@ export const NumbersInputContainer = () => {
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
+
+    try {
+      const winningNumberInputs = numbersInputContainer.querySelectorAll(
+        ".winning-number-input"
+      );
+      const winningNumbers = Array.from(winningNumberInputs).map((input) =>
+        Number(input.value.trim())
+      );
+
+      const bonusNumberInput = numbersInputContainer.querySelector(
+        ".bonus-number-input"
+      );
+      const bonusNumber = Number(bonusNumberInput.value.trim());
+      lottoNumberValidator(winningNumbers);
+      bonusNumberValidator(bonusNumber, winningNumbers);
+      const lottoController = new LottoController();
+      lottoController.setContext(lottos, winningNumbers, bonusNumber);
+      const { rankCounts } = lottoController.calculateMatchResults();
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   numbersInputContainer.addEventListener("input", handleInputChange);

@@ -21,7 +21,7 @@ lottoPurchaseForm.addEventListener("submit", (event) => {
     const lottoTicketContainer = document.querySelector(".lotto-container");
     lottoTicketContainer.append(
       LottoTicketContainer(lottos),
-      NumbersInputContainer()
+      NumbersInputContainer(purchaseAmount, lottos)
     );
   } catch (error) {
     alert(error.message);
