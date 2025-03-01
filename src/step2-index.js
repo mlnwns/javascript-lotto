@@ -9,6 +9,7 @@ import { NumbersInputContainer } from "./components/LottoContainer/NumbersInput/
 
 const lottoPurchaseForm = document.querySelector(".lotto-purchase-form");
 const purchaseAmountInput = document.querySelector(".purchase-amount-input");
+const purchaseButton = document.querySelector(".lotto-purchase-submit-button");
 
 lottoPurchaseForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -23,6 +24,10 @@ lottoPurchaseForm.addEventListener("submit", (event) => {
       LottoTicketContainer(lottos),
       NumbersInputContainer(purchaseAmount, lottos)
     );
+
+    purchaseButton.disabled = true;
+    purchaseButton.style.backgroundColor = "var(--greyscale-4)";
+    purchaseButton.style.cursor = "not-allowed";
   } catch (error) {
     alert(error.message);
   }
