@@ -7,28 +7,53 @@ import lottoGenerator from "./domain/lottoGenerator.js";
 import { LottoTicketContainer } from "./components/LottoContainer/LottoTicket/LottoTicketContainer.js";
 import { NumbersInputContainer } from "./components/LottoContainer/NumbersInput/NumbersInputContainer.js";
 
-const lottoPurchaseForm = document.querySelector(".lotto-purchase-form");
-const purchaseAmountInput = document.querySelector(".purchase-amount-input");
-const purchaseButton = document.querySelector(".lotto-purchase-submit-button");
-
-lottoPurchaseForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  try {
-    const purchaseAmount = Number(purchaseAmountInput.value);
-    purchaseAmountValidator(purchaseAmount);
-
-    const lottos = lottoGenerator.generate(purchaseAmount);
-
-    const lottoTicketContainer = document.querySelector(".lotto-container");
-    lottoTicketContainer.append(
-      LottoTicketContainer(lottos),
-      NumbersInputContainer(purchaseAmount, lottos)
-    );
-
-    purchaseButton.disabled = true;
-    purchaseButton.style.backgroundColor = "var(--greyscale-4)";
-    purchaseButton.style.cursor = "not-allowed";
-  } catch (error) {
-    alert(error.message);
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const appContainer = document.querySelector("#app");
+  window.initialAppState = appContainer.cloneNode(true);
+  initializeEventListeners();
 });
+
+export const initializeEventListeners = () => {
+  const lottoPurchaseForm = document.querySelector(".lotto-purchase-form");
+  const purchaseAmountInput = document.querySelector(".purchase-amount-input");
+  const purchaseButton = document.querySelector(
+    ".lotto-purchase-submit-button"
+  );
+
+  if (!lottoPurchaseForm) return;
+
+  lottoPurchaseForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    try {
+      const purchaseAmount = Number(purchaseAmountInput.value);
+      purchaseAmountValidator(purchaseAmount);
+
+      const lottos = lottoGenerator.generate(purchaseAmount);
+
+      const lottoTicketContainer = document.querySelector(".lotto-container");
+      lottoTicketContainer.append(
+        LottoTicketContainer(lottos),
+        NumbersInputContainer(purchaseAmount, lottos)
+      );
+
+      purchaseButton.disabled = true;
+      purchaseButton.style.backgroundColor = "var(--greyscale-4)";
+      purchaseButton.style.cursor = "not-allowed";
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+};
+
+export const resetApp = () => {
+  const appContainer = document.querySelector("#app");
+
+  if (!window.initialAppState) return;
+
+  appContainer.replaceChildren();
+
+  const newAppState = window.initialAppState.cloneNode(true);
+  appContainer.appendChild(newAppState);
+
+  initializeEventListeners();
+};
