@@ -5,7 +5,7 @@ import { Title } from "./Title.js";
 export const Header = () => {
   const header = createElement("div", { className: "modal-header" });
 
-  header.append(Title(), CloseButton());
+  header.append(CloseButton(), Title());
 
   return header;
 };

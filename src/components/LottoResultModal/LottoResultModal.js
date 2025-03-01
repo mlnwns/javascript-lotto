@@ -8,13 +8,18 @@ export const LottoResultModal = (rankCounts, profitRate) => {
     className: "lotto-result-modal",
   });
 
+  const modalBackground = createElement("div", {
+    className: "modal-background",
+  });
+
   const modalContent = createElement("div", {
     className: "modal-content",
   });
 
   modalContent.append(Header(), ResultList(rankCounts), Footer(profitRate));
+  modalBackground.append(modalContent);
 
-  lottoResultModal.appendChild(modalContent);
+  lottoResultModal.appendChild(modalBackground);
 
   const appContainer = document.querySelector("#app");
   appContainer.append(lottoResultModal);
