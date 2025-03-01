@@ -91,6 +91,12 @@ button {
   width: 3.5rem;
 }
 
+.lotto-ticket-list {
+  margin-top: 0.5rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
 .lotto-ticket-item {
   display: flex;
   align-items: center;
