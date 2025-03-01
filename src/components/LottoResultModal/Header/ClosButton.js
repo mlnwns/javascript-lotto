@@ -12,5 +12,10 @@ export const CloseButton = () => {
 
   closeButton.append(closeImage);
 
+  closeButton.addEventListener("click", () => {
+    const lottoResultModal = document.querySelector(".lotto-result-modal");
+    lottoResultModal.remove();
+  });
+
   return closeButton;
 };

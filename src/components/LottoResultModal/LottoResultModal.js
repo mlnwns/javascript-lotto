@@ -18,8 +18,13 @@ export const LottoResultModal = (rankCounts, profitRate) => {
 
   modalContent.append(Header(), ResultList(rankCounts), Footer(profitRate));
   modalBackground.append(modalContent);
-
   lottoResultModal.appendChild(modalBackground);
+
+  modalBackground.addEventListener("click", (event) => {
+    if (event.target === modalBackground) {
+      lottoResultModal.remove();
+    }
+  });
 
   const appContainer = document.querySelector("#app");
   appContainer.append(lottoResultModal);
