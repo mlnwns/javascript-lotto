@@ -14,12 +14,9 @@ header {
   align-items: center;
 }
 
-.header-nav {
-  margin-left: 8.12rem;
-}
-
 .header-text {
   text-decoration: none;
+  margin-left: 8.12rem;
   color: var(--greyscale-1);
   font-size: var(--title-size);
   font-weight: 800;
