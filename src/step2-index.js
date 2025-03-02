@@ -37,8 +37,6 @@ export const initializeEventListeners = () => {
       );
 
       purchaseButton.disabled = true;
-      purchaseButton.style.backgroundColor = "var(--greyscale-4)";
-      purchaseButton.style.cursor = "not-allowed";
     } catch (error) {
       alert(error.message);
     }
