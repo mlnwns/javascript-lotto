@@ -63,7 +63,7 @@ export const NumbersInputContainer = (purchaseAmount, lottos) => {
 
       LottoResultModal(rankCounts, profitRate);
     } catch (error) {
-      alert(error.message);
+      window.alert(error.message);
     }
   };
 

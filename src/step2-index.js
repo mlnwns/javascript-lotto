@@ -38,7 +38,7 @@ export const initializeEventListeners = () => {
 
       purchaseButton.disabled = true;
     } catch (error) {
-      alert(error.message);
+      window.alert(error.message);
     }
   });
 };
