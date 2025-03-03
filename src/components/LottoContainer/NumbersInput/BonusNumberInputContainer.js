@@ -3,9 +3,9 @@ import { BonusNumberLabel } from "./BonusNumberLabel.js";
 import { $ } from "../../../utils/dom/selectors.js";
 
 export const BonusNumberInputContainer = () => {
-  const bonusNumberInputContainer = $(".bonus-number-input-container");
+  const $bonusNumberInputContainer = $(".bonus-number-input-container");
 
-  bonusNumberInputContainer.append(BonusNumberLabel(), BonusNumberInput());
+  $bonusNumberInputContainer.append(BonusNumberLabel(), BonusNumberInput());
 
-  return bonusNumberInputContainer;
+  return $bonusNumberInputContainer;
 };

@@ -3,12 +3,12 @@ import { LottoCountText } from "./LottoCountText.js";
 import { $ } from "../../../utils/dom/selectors.js";
 
 export const LottoTicketContainer = (lottoNumbersData) => {
-  const lottoTicketContainer = $(".lotto-ticket-container");
+  const $lottoTicketContainer = $(".lotto-ticket-container");
 
-  lottoTicketContainer.append(
+  $lottoTicketContainer.append(
     LottoCountText(lottoNumbersData.length),
     LottoTicketList(lottoNumbersData)
   );
 
-  return lottoTicketContainer;
+  return $lottoTicketContainer;
 };

@@ -1,22 +1,22 @@
 import { createElement } from "../../../utils/dom/createElement.js";
 
 export const LottoTicketItem = ({ lottoNumbers }) => {
-  const lottoTicketItem = createElement("li", {
+  const $lottoTicketItem = createElement("li", {
     className: "lotto-ticket-item",
   });
 
-  lottoTicketItem.append(
+  $lottoTicketItem.append(
     createElement("i", {
       textContent: "🎟",
     })
   );
 
-  lottoTicketItem.append(
+  $lottoTicketItem.append(
     createElement("span", {
       className: "lotto-numbers",
       textContent: lottoNumbers.join(", "),
     })
   );
 
-  return lottoTicketItem;
+  return $lottoTicketItem;
 };

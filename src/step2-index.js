@@ -6,7 +6,7 @@ import purchaseAmountValidator from "./validators/purchaseAmountValidator.js";
 import lottoGenerator from "./domain/lottoGenerator.js";
 import { LottoTicketContainer } from "./components/LottoContainer/LottoTicket/LottoTicketContainer.js";
 import { NumbersInputContainer } from "./components/LottoContainer/NumbersInput/NumbersInputContainer.js";
-import { $ } from "./utils/querySelector.js";
+import { $ } from "./utils/dom/selectors.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const appContainer = $("#app");

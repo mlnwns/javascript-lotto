@@ -6,15 +6,16 @@ import LottoController from "../../../controller/LottoController.js";
 import ProfitCalculator from "../../../domain/ProfitCalculator.js";
 import bonusNumberValidator from "../../../validators/bonusNumberValidator.js";
 import lottoNumberValidator from "../../../validators/lottoNumberValidator.js";
+import { $, $$ } from "../../../utils/dom/selectors.js";
 
 export const NumbersInputContainer = (purchaseAmount, lottos) => {
-  const numbersInputContainer = $(".numbers-input-container");
+  const $numbersInputContainer = $(".numbers-input-container");
 
   const resultButton = ResultButton();
 
   const handleInputChange = (event) => {
     event.preventDefault();
-    const inputs = numbersInputContainer.querySelectorAll("input");
+    const inputs = $$("input", $numbersInputContainer);
     const allFilled = Array.from(inputs).every(
       (input) => input.value.trim() !== ""
     );
@@ -22,7 +23,7 @@ export const NumbersInputContainer = (purchaseAmount, lottos) => {
     resultButton.disabled = !allFilled;
   };
 
-  numbersInputContainer.append(
+  $numbersInputContainer.append(
     InputGuideText("지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요."),
     InputContainer(),
     resultButton
@@ -32,16 +33,12 @@ export const NumbersInputContainer = (purchaseAmount, lottos) => {
     event.preventDefault();
 
     try {
-      const winningNumberInputs = numbersInputContainer.querySelectorAll(
-        ".winning-number-input"
-      );
+      const winningNumberInputs = $$(".winning-number-input");
       const winningNumbers = Array.from(winningNumberInputs).map((input) =>
         Number(input.value.trim())
       );
 
-      const bonusNumberInput = numbersInputContainer.querySelector(
-        ".bonus-number-input"
-      );
+      const bonusNumberInput = $(".bonus-number-input");
       const bonusNumber = Number(bonusNumberInput.value.trim());
 
       lottoNumberValidator(winningNumbers);
@@ -64,8 +61,8 @@ export const NumbersInputContainer = (purchaseAmount, lottos) => {
     }
   };
 
-  numbersInputContainer.addEventListener("input", handleInputChange);
-  numbersInputContainer.addEventListener("submit", handleInputSubmit);
+  $numbersInputContainer.addEventListener("input", handleInputChange);
+  $numbersInputContainer.addEventListener("submit", handleInputSubmit);
 
-  return numbersInputContainer;
+  return $numbersInputContainer;
 };
