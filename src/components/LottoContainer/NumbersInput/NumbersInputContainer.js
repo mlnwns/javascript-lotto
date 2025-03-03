@@ -2,16 +2,15 @@ import { InputGuideText } from "./InputGuideText.js";
 import { InputContainer } from "./InputContainer.js";
 import { ResultButton } from "./ResultButton.js";
 import { LottoResultModal } from "../../LottoResultModal/LottoResultModal.js";
-import { createElement } from "../../../utils/dom/createElement.js";
 import LottoController from "../../../controller/LottoController.js";
 import ProfitCalculator from "../../../domain/ProfitCalculator.js";
 import bonusNumberValidator from "../../../validators/bonusNumberValidator.js";
 import lottoNumberValidator from "../../../validators/lottoNumberValidator.js";
 
 export const NumbersInputContainer = (purchaseAmount, lottos) => {
-  const numbersInputContainer = createElement("form", {
-    className: "numbers-input-container",
-  });
+  const numbersInputContainer = document.querySelector(
+    ".numbers-input-container"
+  );
 
   const resultButton = ResultButton();
 

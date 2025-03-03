@@ -30,11 +30,10 @@ export const initializeEventListeners = () => {
 
       const lottos = lottoGenerator.generate(purchaseAmount);
 
-      const lottoTicketContainer = document.querySelector(".lotto-container");
-      lottoTicketContainer.append(
-        LottoTicketContainer(lottos),
-        NumbersInputContainer(purchaseAmount, lottos)
-      );
+      LottoTicketContainer(lottos);
+
+      const lottoContainer = document.querySelector(".lotto-container");
+      lottoContainer.append(NumbersInputContainer(purchaseAmount, lottos));
 
       purchaseButton.disabled = true;
     } catch (error) {
