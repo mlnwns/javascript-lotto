@@ -23,8 +23,8 @@ const initializeEventListeners = () => {
 const handleLottoPurchase = () => {
   try {
     const purchaseAmount = validateAndSetPurchaseAmount();
-    const lottos = generateLottoTickets(purchaseAmount);
-    renderLottoTickets(lottos);
+    const lottos = lottoGenerator.generate(purchaseAmount);
+    LottoTicketContainer(lottos);
     showNumberInputSection(purchaseAmount, lottos);
     disablePurchaseButton();
   } catch (error) {
@@ -37,14 +37,6 @@ const validateAndSetPurchaseAmount = () => {
   const purchaseAmount = Number(purchaseAmountInput.value);
   purchaseAmountValidator(purchaseAmount);
   return purchaseAmount;
-};
-
-const generateLottoTickets = (purchaseAmount) => {
-  return lottoGenerator.generate(purchaseAmount);
-};
-
-const renderLottoTickets = (lottos) => {
-  LottoTicketContainer(lottos);
 };
 
 const showNumberInputSection = (purchaseAmount, lottos) => {
@@ -82,10 +74,6 @@ const getBonusNumber = () => {
 const validateLottoNumbers = (winningNumbers, bonusNumber) => {
   lottoNumberValidator(winningNumbers);
   bonusNumberValidator(bonusNumber, winningNumbers);
-};
-
-const showResults = (matchResults, profitRate) => {
-  LottoResultModal(matchResults, profitRate);
 };
 
 const handleWinningNumberSubmit = (purchaseAmount, lottos) => {
