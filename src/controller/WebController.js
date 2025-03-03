@@ -90,7 +90,7 @@ const handleWinningNumberSubmit = (purchaseAmount, lottos) => {
     );
     const profitStats = calculateProfitStats(matchResults, purchaseAmount);
 
-    showResults(matchResults, profitStats.profitRate);
+    LottoResultModal(matchResults, profitStats.profitRate);
   } catch (error) {
     window.alert(error.message);
   }
