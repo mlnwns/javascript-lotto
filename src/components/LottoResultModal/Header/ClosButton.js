@@ -1,4 +1,5 @@
 import { createElement } from "../../../utils/dom/createElement.js";
+import { $ } from "../../../utils/dom/querySelector.js";
 
 export const CloseButton = () => {
   const closeButton = createElement("button", {
@@ -13,7 +14,7 @@ export const CloseButton = () => {
   closeButton.append(closeImage);
 
   closeButton.addEventListener("click", () => {
-    const lottoResultModal = document.querySelector(".lotto-result-modal");
+    const lottoResultModal = $(".lotto-result-modal");
     lottoResultModal.remove();
   });
 

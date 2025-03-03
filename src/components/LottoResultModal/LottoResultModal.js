@@ -2,6 +2,7 @@ import { createElement } from "../../utils/dom/createElement.js";
 import { Header } from "./Header/Header.js";
 import { ResultList } from "./Body/ResultLits.js";
 import { Footer } from "./Footer/Footer.js";
+import { $ } from "../../utils/dom/querySelector.js";
 
 export const LottoResultModal = (rankCounts, profitRate) => {
   const lottoResultModal = createElement("div", {
@@ -26,7 +27,7 @@ export const LottoResultModal = (rankCounts, profitRate) => {
     }
   });
 
-  const appContainer = document.querySelector("#app");
+  const appContainer = $("#app");
   appContainer.append(lottoResultModal);
 
   return lottoResultModal;

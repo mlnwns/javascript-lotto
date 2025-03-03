@@ -6,19 +6,18 @@ import purchaseAmountValidator from "./validators/purchaseAmountValidator.js";
 import lottoGenerator from "./domain/lottoGenerator.js";
 import { LottoTicketContainer } from "./components/LottoContainer/LottoTicket/LottoTicketContainer.js";
 import { NumbersInputContainer } from "./components/LottoContainer/NumbersInput/NumbersInputContainer.js";
+import { $ } from "./utils/querySelector.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const appContainer = document.querySelector("#app");
+  const appContainer = $("#app");
   window.initialAppState = appContainer.cloneNode(true);
   initializeEventListeners();
 });
 
 export const initializeEventListeners = () => {
-  const lottoPurchaseForm = document.querySelector(".lotto-purchase-form");
-  const purchaseAmountInput = document.querySelector(".purchase-amount-input");
-  const purchaseButton = document.querySelector(
-    ".lotto-purchase-submit-button"
-  );
+  const lottoPurchaseForm = $(".lotto-purchase-form");
+  const purchaseAmountInput = $(".purchase-amount-input");
+  const purchaseButton = $(".lotto-purchase-submit-button");
 
   if (!lottoPurchaseForm) return;
 
@@ -32,7 +31,7 @@ export const initializeEventListeners = () => {
 
       LottoTicketContainer(lottos);
 
-      const lottoContainer = document.querySelector(".lotto-container");
+      const lottoContainer = $(".lotto-container");
       lottoContainer.append(NumbersInputContainer(purchaseAmount, lottos));
 
       purchaseButton.disabled = true;
@@ -43,7 +42,7 @@ export const initializeEventListeners = () => {
 };
 
 export const resetApp = () => {
-  const appContainer = document.querySelector("#app");
+  const appContainer = $("#app");
 
   if (!window.initialAppState) return;
 

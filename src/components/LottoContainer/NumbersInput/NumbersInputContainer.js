@@ -8,9 +8,7 @@ import bonusNumberValidator from "../../../validators/bonusNumberValidator.js";
 import lottoNumberValidator from "../../../validators/lottoNumberValidator.js";
 
 export const NumbersInputContainer = (purchaseAmount, lottos) => {
-  const numbersInputContainer = document.querySelector(
-    ".numbers-input-container"
-  );
+  const numbersInputContainer = $(".numbers-input-container");
 
   const resultButton = ResultButton();
 

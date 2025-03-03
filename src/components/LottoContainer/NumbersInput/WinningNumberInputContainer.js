@@ -1,17 +1,14 @@
 import { WinningNumberInput } from "./WinningNumberInput.js";
 import { WinningNumberLabel } from "./WinningNumberLabel.js";
 import { SETTINGS } from "../../../constants/index.js";
+import { $ } from "../../../utils/dom/selectors.js";
 
 export const WinningNumberInputContainer = () => {
-  const winningNumberInputContainer = document.querySelector(
-    ".winning-number-input-container"
-  );
+  const winningNumberInputContainer = $(".winning-number-input-container");
 
   winningNumberInputContainer.append(WinningNumberLabel());
 
-  const winningNumberWrapper = document.querySelector(
-    ".winning-number-wrapper"
-  );
+  const winningNumberWrapper = $(".winning-number-wrapper");
 
   for (let i = 0; i < SETTINGS.numberCount; i++) {
     winningNumberWrapper.appendChild(WinningNumberInput());
