@@ -1,5 +1,5 @@
 import { createElement } from "../../../utils/dom/createElement.js";
-import { resetApp } from "../../../step2-index.js";
+import { resetApp } from "../../../controller/WebController.js";
 
 export const RetryButton = () => {
   const retryButton = createElement("button", {

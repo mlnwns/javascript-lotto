@@ -1,14 +1,9 @@
 import { InputGuideText } from "./InputGuideText.js";
 import { InputContainer } from "./InputContainer.js";
 import { ResultButton } from "./ResultButton.js";
-import { LottoResultModal } from "../../LottoResultModal/LottoResultModal.js";
-import LottoController from "../../../controller/LottoController.js";
-import ProfitCalculator from "../../../domain/ProfitCalculator.js";
-import bonusNumberValidator from "../../../validators/bonusNumberValidator.js";
-import lottoNumberValidator from "../../../validators/lottoNumberValidator.js";
 import { $, $$ } from "../../../utils/dom/selectors.js";
 
-export const NumbersInputContainer = (purchaseAmount, lottos) => {
+export const NumbersInputContainer = () => {
   const $numbersInputContainer = $(".numbers-input-container");
 
   const resultButton = ResultButton();
@@ -29,40 +24,7 @@ export const NumbersInputContainer = (purchaseAmount, lottos) => {
     resultButton
   );
 
-  const handleInputSubmit = (event) => {
-    event.preventDefault();
-
-    try {
-      const winningNumberInputs = $$(".winning-number-input");
-      const winningNumbers = Array.from(winningNumberInputs).map((input) =>
-        Number(input.value.trim())
-      );
-
-      const bonusNumberInput = $(".bonus-number-input");
-      const bonusNumber = Number(bonusNumberInput.value.trim());
-
-      lottoNumberValidator(winningNumbers);
-      bonusNumberValidator(bonusNumber, winningNumbers);
-
-      const lottoController = new LottoController();
-      lottoController.setContext(lottos, winningNumbers, bonusNumber);
-
-      const { rankCounts } = lottoController.calculateMatchResults();
-
-      const profitCalculator = new ProfitCalculator();
-      const { profitRate } = profitCalculator.getProfitStats(
-        rankCounts,
-        purchaseAmount
-      );
-
-      LottoResultModal(rankCounts, profitRate);
-    } catch (error) {
-      window.alert(error.message);
-    }
-  };
-
   $numbersInputContainer.addEventListener("input", handleInputChange);
-  $numbersInputContainer.addEventListener("submit", handleInputSubmit);
 
   return $numbersInputContainer;
 };
