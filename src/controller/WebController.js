@@ -67,18 +67,33 @@ const disablePurchaseButton = () => {
   }
 };
 
+const getWinningNumbers = () => {
+  const winningNumberInputs = $$(".winning-number-input");
+  return Array.from(winningNumberInputs).map((input) =>
+    Number(input.value.trim())
+  );
+};
+
+const getBonusNumber = () => {
+  const bonusNumberInput = $(".bonus-number-input");
+  return Number(bonusNumberInput.value.trim());
+};
+
+const validateLottoNumbers = (winningNumbers, bonusNumber) => {
+  lottoNumberValidator(winningNumbers);
+  bonusNumberValidator(bonusNumber, winningNumbers);
+};
+
+const showResults = (matchResults, profitRate) => {
+  LottoResultModal(matchResults, profitRate);
+};
+
 const handleWinningNumberSubmit = (purchaseAmount, lottos) => {
   try {
-    const winningNumberInputs = $$(".winning-number-input");
-    const winningNumbers = Array.from(winningNumberInputs).map((input) =>
-      Number(input.value.trim())
-    );
+    const winningNumbers = getWinningNumbers();
+    const bonusNumber = getBonusNumber();
 
-    const bonusNumberInput = $(".bonus-number-input");
-    const bonusNumber = Number(bonusNumberInput.value.trim());
-
-    lottoNumberValidator(winningNumbers);
-    bonusNumberValidator(bonusNumber, winningNumbers);
+    validateLottoNumbers(winningNumbers, bonusNumber);
 
     const matchResults = calculateMatchResults(
       lottos,
@@ -87,7 +102,7 @@ const handleWinningNumberSubmit = (purchaseAmount, lottos) => {
     );
     const profitStats = calculateProfitStats(matchResults, purchaseAmount);
 
-    LottoResultModal(matchResults, profitStats.profitRate);
+    showResults(matchResults, profitStats.profitRate);
   } catch (error) {
     window.alert(error.message);
   }
